@@ -1,7 +1,10 @@
 package cz.czechitas.java2webapps.ukol6.controller;
 
+import cz.czechitas.java2webapps.ukol6.service.CitatyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -13,11 +16,15 @@ import java.util.Random;
 @Controller
 public class CitatyController {
 
-  private final List<String> seznamCitatu;
-  private final Random random;
+//  private final List<String> seznamCitatu;
+//  private final Random random;
 
-  public CitatyController() {
-    this.seznamCitatu = List.of(
+private final CitatyService citatyService;
+
+//  konstruktor
+@Autowired
+  public CitatyController(CitatyService citatyService) {
+/*    this.seznamCitatu = List.of(
             "Debugging /de·bugh·ing/ (verb): The Classic Mystery Game where you are the detective, the victim, and the murderer.",
             "A user interface is like a joke. If you have to explain it, it's not that good.",
             "To replace programmers with robots, clients will have to accurately describe what they want. We're safe.",
@@ -28,13 +35,26 @@ public class CitatyController {
             "Real programmers count from 0."
     );
     this.random = new Random();
+    */
+
+    this.citatyService = citatyService;
+
   }
 
+//  zobrazení stránky s náhodným citátem
   @GetMapping("/")
   public ModelAndView nahodnyCitat() {
-    int index = random.nextInt(seznamCitatu.size());
+//    int index = random.nextInt(seznamCitatu.size());
     ModelAndView modelAndView = new ModelAndView("citat");
-    modelAndView.addObject("citat", seznamCitatu.get(index));
+    modelAndView.addObject("citat", citatyService.nahodnyCitat());
+    return modelAndView;
+  }
+
+//  zobrazení stránky s konkrétním citátem
+  @GetMapping("/{cislo}")
+  public ModelAndView konkretniCitat(@PathVariable int cislo) {
+    ModelAndView modelAndView = new ModelAndView("citat");
+    modelAndView.addObject("citat", citatyService.konkretniCitat(cislo));
     return modelAndView;
   }
 }
