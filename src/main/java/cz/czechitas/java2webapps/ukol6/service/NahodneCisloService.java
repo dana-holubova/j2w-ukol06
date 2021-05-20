@@ -6,17 +6,16 @@ import java.util.Random;
 
 @Service
 public class NahodneCisloService {
-//    field
+    //    field
     private final Random random;
 
-//    konstruktor
+    //    konstruktor
     public NahodneCisloService() {
         this.random = new Random();
     }
 
     //    metoda pro vrácení náhodného čísla
-public int dejNahodneCislo(int horniMez) {
-        //TODO: Doplnit velikost seznamu citátů
-return random.nextInt(horniMez);
+    public int dejNahodneCislo(int horniMez) {
+        return random.nextInt(horniMez);
     }
 }

@@ -6,10 +6,10 @@ import java.util.List;
 
 @Service
 public class CitatyRepository {
-//    field
+    //    field
     private final List<String> list;
 
-//    konstruktor
+    //    konstruktor
     public CitatyRepository() {
         this.list = List.of("Debugging /de·bugh·ing/ (verb): The Classic Mystery Game where you are the detective, the victim, and the murderer.",
                 "A user interface is like a joke. If you have to explain it, it's not that good.",
@@ -21,12 +21,12 @@ public class CitatyRepository {
                 "Real programmers count from 0.");
     }
 
-//    metoda na vrácení počtu citátů
+    //    metoda na vrácení počtu citátů
     public int pocet() {
         return list.size();
     }
 
-//    metoda pro navrácení citátu podle čísla
+    //    metoda pro navrácení citátu podle čísla
     public String citat(int poradi) {
         return list.get(poradi);
     }
